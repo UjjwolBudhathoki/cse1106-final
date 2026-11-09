@@ -17,30 +17,6 @@ int count = 0;
 float last = 0.0;
 int hasLastTempReading = 0;
 
-void clearInput(void)
-{
-    // Creating a box to hold the current character we pick up
-    int letter;
-
-    // Starting a simple counter at 0
-    int charactersCleaned = 0;
-
-    // 3. Keep looping as long as our counter is under 100
-    while (charactersCleaned < 100)
-    {
-        // Grabing one last character from the keyboard memory
-        letter = getchar();
-
-        // If this character is the "Enter" key (\n), we are good and breaks the loop
-        if (letter == '\n')
-        {
-            break; // Stop the loop immediately
-        }
-
-        // otherwise we add 1 to our counter and repeat
-        charactersCleaned = charactersCleaned + 1;
-    }
-}
 
 // Check if a temperature is in the allowed range.
 int isWithinNormalRange(float temp) {
@@ -182,14 +158,10 @@ void addReading(void)
 
     if (scanf("%f", &temp) != 1) {
         
-        clearInput();
-
         printf("Please enter a number.\n");
 
         return;
     }
-
-    clearInput();
 
     sum = sum + temp;
     count = count + 1;
@@ -222,21 +194,16 @@ void changeLimits(void)
     printf("Enter new low temperature: ");
 
     if (scanf("%f", &newLow) != 1) {
-        clearInput();
         printf("Please enter a number.\n");
         return;
     }
 
-    clearInput();
     printf("Enter new high temperature: ");
 
     if (scanf("%f", &newHigh) != 1) {
-        clearInput();
         printf("Please enter a number.\n");
         return;
     }
-
-    clearInput();
 
     if (newLow >= newHigh) {
         printf("The low temperature must be below the high temperature.\n");
@@ -298,12 +265,9 @@ int main(void)
                 break;
             }
 
-            clearInput();
             printf("Please enter a number from 1 to 4.\n");
             continue;
         }
-
-        clearInput();
 
         if (choice == 1) {
             addReading();
